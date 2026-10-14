@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<meta name="theme-color" content="#0b1020" />
+<title>BlockVerse — Mini Roblox Obby (Phone/Tablet + Desktop)</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%B1%3C/text%3E%3C/svg%3E" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<canvas id="scene" aria-label="3D BlockVerse game world"></canvas>
+
+<!-- HUD -->
+<div id="hud" class="hidden">
+  <div class="hud-top">
+    <div class="hud-pill" id="logo">🧱 BlockVerse</div>
+    <div class="hud-pill" id="score">⭐ 0/24</div>
+    <div class="hud-pill" id="timer">⏱ 0:00.0</div>
+    <div class="hud-pill" id="flags">🏁 0/3</div>
+    <div class="hud-btns">
+      <button id="soundBtn" class="icon-btn" aria-label="toggle sound">🔊</button>
+      <button id="qualityBtn" class="icon-btn" aria-label="toggle quality">✨</button>
+      <button id="respawnBtn" class="icon-btn" aria-label="respawn">↺</button>
+      <button id="helpBtn" class="icon-btn" aria-label="help">?</button>
+    </div>
+  </div>
+  <div id="toast"></div>
+  <div id="checkpointMsg"></div>
+</div>
+
+<!-- Touch controls -->
+<div id="touchUI" class="hidden">
+  <div id="joystick"><div id="stick"></div></div>
+  <div id="touchRight">
+    <button id="buildBtn" class="round-btn small" aria-label="build block">🧱+</button>
+    <button id="delBtn" class="round-btn small" aria-label="delete block">⌫</button>
+    <button id="jumpBtn" class="round-btn big" aria-label="jump">⤒</button>
+  </div>
+</div>
+<div id="colorBar" class="hidden">
+  <button class="sw" data-c="#e11d48" style="background:#e11d48" aria-label="red"></button>
+  <button class="sw" data-c="#f59e0b" style="background:#f59e0b" aria-label="orange"></button>
+  <button class="sw" data-c="#22c55e" style="background:#22c55e" aria-label="green"></button>
+  <button class="sw" data-c="#3b82f6" style="background:#3b82f6" aria-label="blue"></button>
+  <button class="sw" data-c="#a855f7" style="background:#a855f7" aria-label="purple"></button>
+  <button class="sw" data-c="#f8fafc" style="background:#f8fafc" aria-label="white"></button>
+</div>
+
+<!-- Main menu -->
+<div id="menu">
+  <div class="card">
+    <div class="badge">📱 Phone / Tablet ready • 🖥 Desktop too</div>
+    <h1>🧱 BlockVerse</h1>
+    <p class="sub">A mini-Roblox 3D obby &amp; sandbox. Run, jump, bounce, collect studs, hit checkpoints and grab the trophy!</p>
+    <div class="row">
+      <div class="how">
+        <div>🕹 <b>Mobile:</b> left stick to move • drag right side to look • ⤒ to jump</div>
+        <div>⌨️ <b>Desktop:</b> WASD / arrows • Space jump • drag to look • B build • X delete • R respawn</div>
+        <div>🧱 <b>Build:</b> pick a color below, tap 🧱+ to place a block ahead of you</div>
+      </div>
+    </div>
+    <div class="avatar-pick">
+      <span>Avatar:</span>
+      <button class="sw sel" data-a="#f5cd30" style="background:#f5cd30" aria-label="yellow"></button>
+      <button class="sw" data-a="#22c55e" style="background:#22c55e" aria-label="green"></button>
+      <button class="sw" data-a="#3b82f6" style="background:#3b82f6" aria-label="blue"></button>
+      <button class="sw" data-a="#f472b6" style="background:#f472b6" aria-label="pink"></button>
+    </div>
+    <button id="playBtn">Play</button>
+    <div class="tiny">24 studs • 3 checkpoints • 1 trophy • best time saved on device</div>
+    <div class="tiny" id="bestLine"></div>
+  </div>
+</div>
+
+<!-- Help -->
+<div id="help" class="hidden">
+  <div class="card small">
+    <h2>How to play</h2>
+    <ul>
+      <li>Collect gold <b>studs</b> for score.</li>
+      <li>Touch <b>flags</b> to save checkpoints.</li>
+      <li>Avoid <b>lava</b> — you respawn at the last flag.</li>
+      <li>Green pads <b>bounce</b> you high. Red bar <b>spins</b> — time it!</li>
+      <li>Reach the <b>🏆 trophy</b> to win.</li>
+    </ul>
+    <button id="closeHelp">Close</button>
+  </div>
+</div>
+
+<!-- Win -->
+<div id="win" class="hidden">
+  <div class="card small">
+    <h2>🏆 You win!</h2>
+    <p id="winStats"></p>
+    <div class="btnrow">
+      <button id="againBtn">Play again</button>
+      <button id="freeBtn" class="ghost">Keep exploring</button>
+    </div>
+  </div>
+</div>
+
+<div id="nogl" class="hidden">WebGL is unavailable in this browser.</div>
+
+<script type="importmap">
+{"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js"}}
+</script>
+<script type="module" src="game.js"></script>
+</body>
+</html>
